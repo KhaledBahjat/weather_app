@@ -2,9 +2,9 @@ class WeatherModel {
   final String cityName;
   final String data;
   final String image;
-  final String avgTemp;
-  final String mxTemp;
-  final String mnTemp;
+  final double avgTemp;
+  final double mxTemp;
+  final double mnTemp;
   final String weatherCondition;
 
   WeatherModel({
