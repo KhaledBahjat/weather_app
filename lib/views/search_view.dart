@@ -7,21 +7,52 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-        child: TextField(
-          onSubmitted: (value) {
-            WeatherService(Dio()).getCurrentWeather(cityName: value);
-            Navigator.pop(context);
-          },
-          decoration: InputDecoration(
-            suffixIcon: Icon(Icons.search),
-            label: Text('Search', style: TextStyle(fontSize: 20)),
-            hintText: 'Enter City Name',
-            border: OutlineInputBorder(borderSide: BorderSide()),
-            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-          ),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Find Weather 🌤️',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(height: 24),
+
+            TextField(
+              textInputAction: TextInputAction.search,
+              onSubmitted: (value) {
+                if (value.trim().isEmpty) return;
+
+                WeatherService(Dio()).getCurrentWeather(cityName: value.trim());
+
+                Navigator.pop(context);
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter city name',
+                prefixIcon: const Icon(Icons.location_city),
+                suffixIcon: const Icon(Icons.search),
+
+                filled: true,
+                fillColor: Colors.grey.shade100,
+
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 18,
+                ),
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide.none,
+                ),
+
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(color: Colors.blue, width: 2),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
