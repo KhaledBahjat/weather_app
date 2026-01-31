@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/models/weather_model.dart';
 
 class WeatherInfoBody extends StatelessWidget {
-  const WeatherInfoBody({super.key});
-
+  const WeatherInfoBody({super.key, required this.data});
+  final WeatherModel data;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,26 +12,44 @@ class WeatherInfoBody extends StatelessWidget {
         children: [
           Text(
             textAlign: TextAlign.center,
-            'Qena',
+            data.cityName,
             style: TextStyle(fontSize: 40),
           ),
-          Text('Updated at 15 /2 ', style: TextStyle(fontSize: 20)),
+          Text('Updated at ${data.data} ', style: TextStyle(fontSize: 20)),
           SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Icon(Icons.cloud, size: 40),
-              Text('15°C', style: TextStyle(fontSize: 35)),
+              SizedBox(
+                width: 60,
+                height: 60,
+                child: Image.network(
+                  data.image.contains("https:")
+                      ? data.image
+                      : "https:${data.image}",
+                  fit: BoxFit.contain,
+                ),
+              ),
+              Text('${data.avgTemp.toInt()}°C', style: TextStyle(fontSize: 35)),
               Column(
                 children: [
-                  Text('maxTemp : 30°C', style: TextStyle(fontSize: 18)),
-                  Text('minTemp : 10°C', style: TextStyle(fontSize: 18)),
+                  Text(
+                    'maxTemp : ${data.mxTemp.toInt()}°C',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Text(
+                    'minTemp :  ${data.mnTemp.toInt()}°C',
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ],
               ),
             ],
           ),
           SizedBox(height: 20),
-          Text('--- Light Rain ---', style: TextStyle(fontSize: 35)),
+          Text(
+            '--- ${data.weatherCondition} ---',
+            style: TextStyle(fontSize: 35),
+          ),
         ],
       ),
     );

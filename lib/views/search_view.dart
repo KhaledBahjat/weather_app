@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_app/services/weather_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/cubits/get_weather_cubit/get_weather_cubit.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
@@ -22,10 +22,8 @@ class SearchView extends StatelessWidget {
             TextField(
               textInputAction: TextInputAction.search,
               onSubmitted: (value) {
-                if (value.trim().isEmpty) return;
-
-                WeatherService(Dio()).getCurrentWeather(cityName: value.trim());
-
+                var fun = BlocProvider.of<GetWeatherCubit>(context);
+                fun.getCurrentWeather(cityName: value);
                 Navigator.pop(context);
               },
               decoration: InputDecoration(
