@@ -1,7 +1,13 @@
-class WeatherState {}
+class WeatherStates {}
 
-class NoWeatherState extends WeatherState {}
+class InitialWeatherState extends WeatherStates {}
 
-class WeatherLoadingState extends WeatherState {}
+class GetWeatherState extends WeatherStates {}
 
-class WeatherFailureState extends WeatherState {}
+class LoadingState extends WeatherStates {}
+
+class ErrorCityNameState extends WeatherStates {}
+
+class ErrorNetWorkState extends WeatherStates {}
+
+class NoEnterCityState extends WeatherStates {}
