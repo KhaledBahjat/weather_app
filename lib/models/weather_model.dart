@@ -1,6 +1,6 @@
 class WeatherModel {
   final String cityName;
-  final String data;
+  final DateTime date;
   final String image;
   final double avgTemp;
   final double mxTemp;
@@ -9,7 +9,7 @@ class WeatherModel {
 
   WeatherModel({
     required this.cityName,
-    required this.data,
+    required this.date,
     required this.image,
     required this.avgTemp,
     required this.mxTemp,
@@ -19,7 +19,7 @@ class WeatherModel {
   factory WeatherModel.fromJson(json) {
     return WeatherModel(
       cityName: json["location"]["name"],
-      data: json["current"]["last_updated"],
+      date: DateTime.parse(json["current"]["last_updated"]),
       avgTemp: json["forecast"]["forecastday"][0]["day"]["avgtemp_c"],
       mxTemp: json["forecast"]["forecastday"][0]["day"]["maxtemp_c"],
       mnTemp: json["forecast"]["forecastday"][0]["day"]["mintemp_c"],

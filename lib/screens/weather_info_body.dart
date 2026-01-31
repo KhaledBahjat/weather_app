@@ -15,14 +15,16 @@ class WeatherInfoBody extends StatelessWidget {
             data.cityName,
             style: TextStyle(fontSize: 40),
           ),
-          Text('Updated at ${data.data} ', style: TextStyle(fontSize: 20)),
+          Text(
+            'Updated at ${data.date.hour - 12}:${data.date.minute} ',
+            style: TextStyle(fontSize: 20),
+          ),
           SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                width: 60,
-                height: 60,
+                width: 80,
                 child: Image.network(
                   data.image.contains("https:")
                       ? data.image
