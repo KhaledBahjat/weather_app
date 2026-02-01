@@ -7,9 +7,11 @@
       "name": "weather_app",
       "version": "1.0.0+1",
       "dependencies": [
+        "bloc",
         "cupertino_icons",
         "dio",
-        "flutter"
+        "flutter",
+        "flutter_bloc"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -39,6 +41,22 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "flutter_bloc",
+      "version": "9.1.1",
+      "dependencies": [
+        "bloc",
+        "flutter",
+        "provider"
+      ]
+    },
+    {
+      "name": "bloc",
+      "version": "9.2.0",
+      "dependencies": [
+        "meta"
       ]
     },
     {
@@ -161,6 +179,15 @@
       ]
     },
     {
+      "name": "provider",
+      "version": "6.1.5+1",
+      "dependencies": [
+        "collection",
+        "flutter",
+        "nested"
+      ]
+    },
+    {
       "name": "dio_web_adapter",
       "version": "2.1.1",
       "dependencies": [
@@ -257,6 +284,13 @@
       "dependencies": [
         "source_span",
         "string_scanner"
+      ]
+    },
+    {
+      "name": "nested",
+      "version": "1.0.0",
+      "dependencies": [
+        "flutter"
       ]
     },
     {
