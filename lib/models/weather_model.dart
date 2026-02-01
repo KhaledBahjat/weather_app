@@ -1,5 +1,6 @@
 class WeatherModel {
   final String cityName;
+  final int? weatherCondtionCode;
   final DateTime date;
   final String image;
   final double avgTemp;
@@ -14,10 +15,11 @@ class WeatherModel {
     required this.avgTemp,
     required this.mxTemp,
     required this.mnTemp,
-    required this.weatherCondition,
+    required this.weatherCondition,  this.weatherCondtionCode,
   });
   factory WeatherModel.fromJson(json) {
     return WeatherModel(
+      weatherCondtionCode: json["forecast"]["forecastday"][0]["day"]["condition"]["code"],
       cityName: json["location"]["name"],
       date: DateTime.parse(json["current"]["last_updated"]),
       avgTemp: json["forecast"]["forecastday"][0]["day"]["avgtemp_c"],

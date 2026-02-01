@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather_model.dart';
+import 'package:weather_app/theme/get_theme_color.dart';
 
 class WeatherInfoBody extends StatelessWidget {
   const WeatherInfoBody({super.key, required this.data});
   final WeatherModel data;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            AppColor.getThemeColorByCondition(data.weatherCondition),
+            AppColor.getThemeColorByCondition(data.weatherCondition).shade200,
+          ],
+        ),
+      ),
+      padding: EdgeInsets.all(16),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -16,8 +28,9 @@ class WeatherInfoBody extends StatelessWidget {
             style: TextStyle(fontSize: 40),
           ),
           Text(
-            'Updated at ${data.date.hour - 12}:${data.date.minute} ',
+            'Updated at ${data.date.hour}:${data.date.minute} ${getAmPm(data.date)} \n ${data.date.day}/${data.date.month}/${data.date.year}',
             style: TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
           ),
           SizedBox(height: 20),
           Row(
@@ -56,4 +69,8 @@ class WeatherInfoBody extends StatelessWidget {
       ),
     );
   }
+}
+
+String getAmPm(DateTime date) {
+  return date.hour < 12 ? 'AM' : 'PM';
 }
